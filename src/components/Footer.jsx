@@ -56,7 +56,7 @@ export default function Footer() {
         {/* Bottom: License */}
         <div className="mt-6 pt-6 border-t border-indigo-700 text-center text-indigo-300 text-xs">
           <p>
-            © 2024 Agent Skills Academy. Материалы основаны на{' '}
+            © 2026 Agent Skills Academy. Материалы основаны на{' '}
             <a
               href="https://platform.claude.com/docs"
               target="_blank"
