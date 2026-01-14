@@ -232,6 +232,7 @@ export default function SectionDetail() {
   if (mode === 'quiz') {
     // Маппинг ID раздела на ключ вопросов
     const questionKeyMap = {
+      'agent-skills': 'agentSkills',
       'basics': 'basics',
       'tool-use': 'toolUse',
       'workflows': 'workflows',

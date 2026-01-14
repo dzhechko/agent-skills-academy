@@ -16,7 +16,7 @@ export default function FinalTest() {
   const [showAchievement, setShowAchievement] = useState(null);
 
   const progress = loadProgress();
-  const allSectionsCompleted = progress.completedSections.length === 6;
+  const allSectionsCompleted = progress.completedSections.length === 7;
 
   const handleStart = () => {
     setStarted(true);
@@ -206,7 +206,7 @@ export default function FinalTest() {
                 <div>
                   <div className="font-bold text-amber-800 mb-1">Рекомендация</div>
                   <p className="text-amber-700">
-                    Вы прошли только {progress.completedSections.length} из 6 разделов. 
+                    Вы прошли только {progress.completedSections.length} из 7 разделов. 
                     Рекомендуем сначала завершить все разделы для лучшего результата.
                   </p>
                 </div>
