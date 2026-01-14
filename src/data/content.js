@@ -334,25 +334,61 @@ export const flashcardsCustomSkills = [
     id: 1,
     term: "SKILL.md",
     definition: "Основной файл Skill с YAML frontmatter (name, description) и инструкциями для Claude.",
-    category: "Структура Skills"
+    category: "Структура Skills",
+    example: `---
+name: pdf-processing
+description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files.
+---
+
+# PDF Processing
+
+## Instructions
+[Clear, step-by-step guidance for Claude to follow]
+
+## Examples
+[Concrete examples of using this Skill]`
   },
   {
     id: 2,
     term: "Level 1: Метаданные",
     definition: "YAML frontmatter, загружаемый при старте (~100 токенов). Claude знает что Skill существует и когда использовать.",
-    category: "Загрузка Skills"
+    category: "Загрузка Skills",
+    example: `---
+name: pdf-processing
+description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
+---`
   },
   {
     id: 3,
     term: "Level 2: Инструкции",
     definition: "Основное тело SKILL.md с пошаговыми инструкциями, загружается при активации Skill (до 5K токенов).",
-    category: "Загрузка Skills"
+    category: "Загрузка Skills",
+    example: `# PDF Processing
+
+## Quick start
+
+Use pdfplumber to extract text from PDFs:
+
+\`\`\`python
+import pdfplumber
+
+with pdfplumber.open("document.pdf") as pdf:
+    text = pdf.pages[0].extract_text()
+\`\`\`
+
+For advanced form filling, see [FORMS.md](FORMS.md).`
   },
   {
     id: 4,
     term: "Level 3: Ресурсы и код",
     definition: "Дополнительные файлы (FORMS.md, скрипты), загружаются по необходимости. Скрипты выполняются через bash без загрузки в контекст.",
-    category: "Загрузка Skills"
+    category: "Загрузка Skills",
+    example: `pdf-skill/
+├── SKILL.md (main instructions)
+├── FORMS.md (form-filling guide)
+├── REFERENCE.md (detailed API reference)
+└── scripts/
+    └── fill_form.py (utility script)`
   },
   {
     id: 5,
@@ -364,7 +400,9 @@ export const flashcardsCustomSkills = [
     id: 6,
     term: "Skill Name Rules",
     definition: "Макс. 64 символа, только lowercase, цифры и дефисы. Нельзя: XML-теги, 'anthropic', 'claude'.",
-    category: "Требования Skills"
+    category: "Требования Skills",
+    example: `✅ Good: pdf-processing, data-analyzer, email-sender
+❌ Bad: PDF_Processing, data analyzer, claude-helper, <skill>`
   },
   {
     id: 7,
@@ -1286,12 +1324,12 @@ export const sections = [
         
         images: [
           {
-            src: "/images/agent-skills-architecture.png",
+            src: `${import.meta.env.BASE_URL}images/agent-skills-architecture.png`,
             alt: "Архитектура Agent Skills - интеграция с конфигурацией агента и виртуальной машиной",
             caption: "Как Skills интегрируются с конфигурацией агента и виртуальной машиной"
           },
           {
-            src: "/images/agent-skills-context-window.png",
+            src: `${import.meta.env.BASE_URL}images/agent-skills-context-window.png`,
             alt: "Загрузка Skills в контекстное окно - прогрессивная загрузка метаданных и контента",
             caption: "Прогрессивная загрузка: метаданные → инструкции → ресурсы"
           }

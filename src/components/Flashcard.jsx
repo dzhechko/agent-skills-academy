@@ -151,17 +151,27 @@ export default function Flashcard({ cards, onComplete }) {
               </p>
             </div>
 
-            {/* Обратная сторона (определение) */}
+            {/* Обратная сторона (определение + пример) */}
             <div
-              className="absolute w-full h-full bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl shadow-2xl p-8 flex items-center justify-center"
+              className="absolute w-full h-full bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl shadow-2xl p-6 flex flex-col overflow-y-auto"
               style={{
                 backfaceVisibility: "hidden",
                 transform: "rotateY(180deg)"
               }}
             >
-              <p className="text-white text-lg leading-relaxed text-center">
+              <p className="text-white text-base leading-relaxed mb-4">
                 {currentCard.definition}
               </p>
+              
+              {/* Пример кода если есть */}
+              {currentCard.example && (
+                <div className="mt-auto">
+                  <div className="text-yellow-300 text-xs font-bold mb-2">ПРИМЕР:</div>
+                  <pre className="bg-gray-900/50 text-gray-100 text-xs p-3 rounded-lg overflow-x-auto whitespace-pre-wrap">
+                    {currentCard.example}
+                  </pre>
+                </div>
+              )}
             </div>
           </motion.div>
         </motion.div>
