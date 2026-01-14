@@ -495,6 +495,53 @@ export default function SectionDetail() {
             </button>
           </motion.div>
         </div>
+
+        {/* Модальное окно для увеличенного изображения */}
+        <AnimatePresence>
+          {zoomedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
+              onClick={() => setZoomedImage(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ type: "spring", damping: 25 }}
+                className="relative max-w-7xl max-h-[90vh] w-full"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Кнопка закрытия */}
+                <button
+                  onClick={() => setZoomedImage(null)}
+                  className="absolute -top-12 right-0 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition"
+                >
+                  <X size={32} />
+                </button>
+
+                {/* Увеличенное изображение */}
+                <div className="bg-white rounded-2xl p-4 shadow-2xl">
+                  <img
+                    src={zoomedImage.src}
+                    alt={zoomedImage.alt}
+                    className="w-full h-auto rounded-lg"
+                  />
+                  <p className="text-center text-gray-700 mt-4 text-lg font-medium">
+                    {zoomedImage.caption}
+                  </p>
+                </div>
+
+                {/* Подсказка */}
+                <p className="text-white text-center mt-4 text-sm opacity-75">
+                  Нажмите на затемнённую область или ESC, чтобы закрыть
+                </p>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     );
   }
@@ -558,57 +605,5 @@ export default function SectionDetail() {
     );
   }
 
-  // Модальное окно с увеличенным изображением
-  return (
-    <>
-      {/* Основной контент (если есть) */}
-      
-      {/* Модальное окно для увеличенного изображения */}
-      <AnimatePresence>
-        {zoomedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
-            onClick={() => setZoomedImage(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ type: "spring", damping: 25 }}
-              className="relative max-w-7xl max-h-[90vh] w-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Кнопка закрытия */}
-              <button
-                onClick={() => setZoomedImage(null)}
-                className="absolute -top-12 right-0 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition"
-              >
-                <X size={32} />
-              </button>
-
-              {/* Увеличенное изображение */}
-              <div className="bg-white rounded-2xl p-4 shadow-2xl">
-                <img
-                  src={zoomedImage.src}
-                  alt={zoomedImage.alt}
-                  className="w-full h-auto rounded-lg"
-                />
-                <p className="text-center text-gray-700 mt-4 text-lg font-medium">
-                  {zoomedImage.caption}
-                </p>
-              </div>
-
-              {/* Подсказка */}
-              <p className="text-white text-center mt-4 text-sm opacity-75">
-                Нажмите на затемнённую область или ESC, чтобы закрыть
-              </p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
+  return null;
 }
