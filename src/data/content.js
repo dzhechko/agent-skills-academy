@@ -1324,12 +1324,12 @@ export const sections = [
         
         images: [
           {
-            src: `${import.meta.env.BASE_URL}images/agent-skills-architecture.png`,
+            src: "/agent-skills-academy/images/agent-skills-architecture.png",
             alt: "Архитектура Agent Skills - интеграция с конфигурацией агента и виртуальной машиной",
             caption: "Как Skills интегрируются с конфигурацией агента и виртуальной машиной"
           },
           {
-            src: `${import.meta.env.BASE_URL}images/agent-skills-context-window.png`,
+            src: "/agent-skills-academy/images/agent-skills-context-window.png",
             alt: "Загрузка Skills в контекстное окно - прогрессивная загрузка метаданных и контента",
             caption: "Прогрессивная загрузка: метаданные → инструкции → ресурсы"
           }
