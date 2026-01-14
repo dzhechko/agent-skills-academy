@@ -379,6 +379,85 @@ export default function SectionDetail() {
                 </div>
               </div>
             )}
+
+            {/* Architecture (для Custom Skills) */}
+            {section.content.architecture && (
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                  {section.content.architecture.title}
+                </h2>
+                
+                <div className="prose max-w-none mb-6">
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    {section.content.architecture.description}
+                  </p>
+                </div>
+
+                {/* Architecture Images */}
+                {section.content.architecture.images && (
+                  <div className="grid md:grid-cols-2 gap-6 mb-6">
+                    {section.content.architecture.images.map((img, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.1 * index }}
+                        className="bg-white rounded-2xl p-4 shadow-lg border-2 border-indigo-100"
+                      >
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          className="w-full rounded-lg mb-3"
+                        />
+                        <p className="text-sm text-gray-600 text-center italic">
+                          {img.caption}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
+
+                {/* How Claude Accesses */}
+                {section.content.architecture.howClaudeAccesses && (
+                  <div className="bg-blue-50 rounded-2xl p-6 mb-6">
+                    <h3 className="text-xl font-bold text-gray-800 mb-4">
+                      Как Claude получает доступ к Skills:
+                    </h3>
+                    <ul className="space-y-3">
+                      {section.content.architecture.howClaudeAccesses.map((item, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <span className="text-blue-600 font-bold mt-0.5">{index + 1}.</span>
+                          <span className="text-gray-700">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* What Enables */}
+                {section.content.architecture.whatEnables && (
+                  <div className="grid gap-4">
+                    <h3 className="text-xl font-bold text-gray-800">
+                      Что обеспечивает эта архитектура:
+                    </h3>
+                    {section.content.architecture.whatEnables.map((item, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 * index }}
+                        className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border-l-4 border-green-500"
+                      >
+                        <h4 className="text-lg font-bold text-gray-800 mb-2">
+                          {item.capability}
+                        </h4>
+                        <p className="text-gray-700">{item.description}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </motion.div>
 
           {/* CTA */}
@@ -431,7 +510,8 @@ export default function SectionDetail() {
       'workflows': 'workflows',
       'extended-thinking': 'extendedThinking',
       'patterns': 'patterns',
-      'best-practices': 'bestPractices'
+      'best-practices': 'bestPractices',
+      'custom-skills': 'customSkills'
     };
     
     const questionsKey = questionKeyMap[sectionId] || 'basics';
