@@ -2,7 +2,7 @@
 
 **Интерактивное образовательное SPA-приложение для изучения агентных систем Claude AI**
 
-[![Demo](https://img.shields.io/badge/demo-live-success)](https://yourusername.github.io/agent-skills-academy)
+[![Demo](https://img.shields.io/badge/demo-live-success)](https://dzhechko.github.io/agent-skills-academy)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## 🌟 О проекте
@@ -44,7 +44,7 @@ Agent Skills Academy — это современное одностраничн�
 
 ```bash
 # Клонировать репозиторий
-git clone https://github.com/yourusername/agent-skills-academy.git
+git clone https://github.com/dzhechko/agent-skills-academy.git
 cd agent-skills-academy
 
 # Установить зависимости
@@ -89,7 +89,7 @@ npm run build
    - Branch: `gh-pages` / `root`
    - Сохраните
 
-Через 1-2 минуты приложение будет доступно по адресу `https://yourusername.github.io/your-repo-name`
+Через 1-2 минуты приложение будет доступно по адресу `https://dzhechko.github.io/agent-skills-academy`
 
 ## 🏗️ Структура проекта
 
@@ -218,8 +218,8 @@ agent-skills-academy/
 ## 📧 Контакты
 
 Если у вас есть вопросы или предложения:
-- 🐛 [Создать Issue](https://github.com/yourusername/agent-skills-academy/issues)
-- 📧 Email: your.email@example.com
+- 🐛 [Создать Issue](https://github.com/dzhechko/agent-skills-academy/issues)
+- 📧 GitHub: [@dzhechko](https://github.com/dzhechko)
 
 ---
 

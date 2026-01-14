@@ -123,7 +123,7 @@ export default function Help() {
           </motion.a>
 
           <motion.a
-            href="https://github.com/yourusername/agent-skills-academy"
+            href="https://github.com/dzhechko/agent-skills-academy"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}

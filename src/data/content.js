@@ -5,7 +5,7 @@ export const appConfig = {
   title: "Agent Skills Academy",
   subtitle: "Мастерство агентных систем Claude AI",
   version: "1.0.0",
-  github: "https://github.com/yourusername/agent-skills-academy"
+  github: "https://github.com/dzhechko/agent-skills-academy"
 };
 
 // ============================================
