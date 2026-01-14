@@ -286,6 +286,16 @@ export const flashcardsBySection = {
   'best-practices': flashcardsBestPractices
 };
 
+// Для обратной совместимости - экспорт всех карточек
+export const flashcards = [
+  ...flashcardsBasics,
+  ...flashcardsToolUse,
+  ...flashcardsWorkflows,
+  ...flashcardsExtendedThinking,
+  ...flashcardsPatterns,
+  ...flashcardsBestPractices
+];
+
 // ============================================
 // СОДЕРЖАНИЕ РАЗДЕЛОВ ОБУЧЕНИЯ
 // ============================================
