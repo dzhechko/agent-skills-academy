@@ -9,9 +9,11 @@ export const appConfig = {
 };
 
 // ============================================
-// ФЛЭШ-КАРТОЧКИ ДЛЯ РАЗДЕЛА "ОСНОВЫ АГЕНТОВ"
+// ФЛЭШ-КАРТОЧКИ ПО РАЗДЕЛАМ
 // ============================================
-export const flashcards = [
+
+// Карточки для раздела "Основы агентов"
+export const flashcardsBasics = [
   {
     id: 1,
     term: "Агентные навыки (Agent Skills)",
@@ -103,6 +105,186 @@ export const flashcards = [
     category: "Архитектура"
   }
 ];
+
+// Карточки для раздела "Tool Use"
+export const flashcardsToolUse = [
+  {
+    id: 1,
+    term: "Tool Use (Использование инструментов)",
+    definition: "Способность агента вызывать внешние функции и API для расширения своих возможностей.",
+    category: "Tool Use"
+  },
+  {
+    id: 2,
+    term: "Tool Definition",
+    definition: "Описание инструмента с указанием названия, назначения, параметров и примеров использования.",
+    category: "Tool Use"
+  },
+  {
+    id: 3,
+    term: "Parallel Tool Calling",
+    definition: "Одновременный вызов нескольких независимых инструментов для ускорения выполнения.",
+    category: "Tool Use"
+  },
+  {
+    id: 4,
+    term: "Tool Response Validation",
+    definition: "Проверка корректности результатов инструментов перед их использованием.",
+    category: "Tool Use"
+  },
+  {
+    id: 5,
+    term: "Tool Selection Strategy",
+    definition: "Процесс выбора агентом наиболее подходящего инструмента из доступных для текущей задачи.",
+    category: "Tool Use"
+  }
+];
+
+// Карточки для раздела "Multi-step Workflows"
+export const flashcardsWorkflows = [
+  {
+    id: 1,
+    term: "Sequential Workflow",
+    definition: "Линейная последовательность шагов, где каждый следующий зависит от результата предыдущего.",
+    category: "Workflows"
+  },
+  {
+    id: 2,
+    term: "Parallel Workflow",
+    definition: "Несколько независимых задач выполняются одновременно для экономии времени.",
+    category: "Workflows"
+  },
+  {
+    id: 3,
+    term: "Conditional Workflow",
+    definition: "Выбор следующего шага на основе результата предыдущего (if/else логика).",
+    category: "Workflows"
+  },
+  {
+    id: 4,
+    term: "Orchestrator",
+    definition: "Компонент, управляющий последовательностью вызовов и передачей данных между шагами.",
+    category: "Workflows"
+  },
+  {
+    id: 5,
+    term: "State Management",
+    definition: "Хранение и управление промежуточными результатами в процессе выполнения workflow.",
+    category: "Workflows"
+  }
+];
+
+// Карточки для раздела "Extended Thinking"
+export const flashcardsExtendedThinking = [
+  {
+    id: 1,
+    term: "Extended Thinking Mode",
+    definition: "Режим работы агента с дополнительным временем на обдумывание для улучшения качества решений.",
+    category: "Extended Thinking"
+  },
+  {
+    id: 2,
+    term: "Chain-of-Thought",
+    definition: "Внутренний процесс рассуждений модели, где промежуточные шаги анализируются последовательно.",
+    category: "Extended Thinking"
+  },
+  {
+    id: 3,
+    term: "Reasoning Budget",
+    definition: "Количество вычислительных ресурсов (времени/токенов), выделенных на процесс мышления.",
+    category: "Extended Thinking"
+  },
+  {
+    id: 4,
+    term: "Latency-Quality Tradeoff",
+    definition: "Компромисс между скоростью ответа и качеством решения при использовании Extended Thinking.",
+    category: "Extended Thinking"
+  },
+  {
+    id: 5,
+    term: "Verification Step",
+    definition: "Этап проверки логической целостности промежуточных рассуждений перед формированием ответа.",
+    category: "Extended Thinking"
+  }
+];
+
+// Карточки для раздела "Архитектурные паттерны"
+export const flashcardsPatterns = [
+  {
+    id: 1,
+    term: "RAG (Retrieval-Augmented Generation)",
+    definition: "Паттерн извлечения релевантной информации из базы знаний перед генерацией ответа.",
+    category: "Паттерны"
+  },
+  {
+    id: 2,
+    term: "Agents as Judges",
+    definition: "Использование специализированного агента для оценки качества работы других агентов.",
+    category: "Паттерны"
+  },
+  {
+    id: 3,
+    term: "Human-in-the-Loop",
+    definition: "Паттерн с запросом подтверждения человека на критических этапах выполнения.",
+    category: "Паттерны"
+  },
+  {
+    id: 4,
+    term: "Prompt Chaining",
+    definition: "Разбиение сложной задачи на последовательность специализированных промптов.",
+    category: "Паттерны"
+  },
+  {
+    id: 5,
+    term: "Reflection Pattern",
+    definition: "Паттерн, где агент критически оценивает и улучшает собственные результаты.",
+    category: "Паттерны"
+  }
+];
+
+// Карточки для раздела "Best Practices"
+export const flashcardsBestPractices = [
+  {
+    id: 1,
+    term: "Prompt Specificity",
+    definition: "Принцип создания чётких и конкретных инструкций с указанием формата выхода.",
+    category: "Best Practices"
+  },
+  {
+    id: 2,
+    term: "Error Handling Strategy",
+    definition: "Комплекс мер для обработки сбоев: retry логика, валидация, graceful degradation.",
+    category: "Best Practices"
+  },
+  {
+    id: 3,
+    term: "Prompt Caching",
+    definition: "Техника сохранения повторяющихся частей контекста для снижения стоимости и латентности.",
+    category: "Best Practices"
+  },
+  {
+    id: 4,
+    term: "Input Validation",
+    definition: "Проверка и очистка пользовательского ввода перед использованием в промптах.",
+    category: "Best Practices"
+  },
+  {
+    id: 5,
+    term: "Least Privilege Principle",
+    definition: "Предоставление агенту только необходимых минимальных permissions для выполнения задач.",
+    category: "Best Practices"
+  }
+];
+
+// Карта карточек по ID раздела
+export const flashcardsBySection = {
+  'basics': flashcardsBasics,
+  'tool-use': flashcardsToolUse,
+  'workflows': flashcardsWorkflows,
+  'extended-thinking': flashcardsExtendedThinking,
+  'patterns': flashcardsPatterns,
+  'best-practices': flashcardsBestPractices
+};
 
 // ============================================
 // СОДЕРЖАНИЕ РАЗДЕЛОВ ОБУЧЕНИЯ

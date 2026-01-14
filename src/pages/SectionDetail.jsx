@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, BookOpen, Award } from 'lucide-react';
 import Flashcard from '../components/Flashcard';
 import Quiz from '../components/Quiz';
-import { sections, flashcards, quizQuestions } from '../data/content';
+import { sections, flashcardsBySection, quizQuestions } from '../data/content';
 import { loadProgress, saveProgress, addXP, completeSection, checkAchievements } from '../utils/progress';
 import { achievements } from '../data/content';
 import { AchievementUnlocked } from '../components/AchievementBadge';
@@ -220,7 +220,7 @@ export default function SectionDetail() {
             Назад к материалу
           </button>
           <Flashcard 
-            cards={flashcards.filter(c => c.category === "Основы" || c.category === "Продвинутое")} 
+            cards={flashcardsBySection[sectionId] || flashcardsBySection['basics']} 
             onComplete={handleCompleteFlashcards}
           />
         </div>
@@ -230,7 +230,17 @@ export default function SectionDetail() {
 
   // Режим теста
   if (mode === 'quiz') {
-    const questionsKey = sectionId.replace(/-/g, '');
+    // Маппинг ID раздела на ключ вопросов
+    const questionKeyMap = {
+      'basics': 'basics',
+      'tool-use': 'toolUse',
+      'workflows': 'workflows',
+      'extended-thinking': 'extendedThinking',
+      'patterns': 'patterns',
+      'best-practices': 'bestPractices'
+    };
+    
+    const questionsKey = questionKeyMap[sectionId] || 'basics';
     const sectionQuestions = quizQuestions[questionsKey] || quizQuestions.basics;
     
     return (
