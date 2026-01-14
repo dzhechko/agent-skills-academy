@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowLeft, BookOpen, Award } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, BookOpen, Award, X, ZoomIn } from 'lucide-react';
 import Flashcard from '../components/Flashcard';
 import Quiz from '../components/Quiz';
 import { sections, flashcardsBySection, quizQuestions } from '../data/content';
@@ -15,9 +15,22 @@ export default function SectionDetail() {
   const [mode, setMode] = useState('content'); // 'content', 'flashcards', 'quiz'
   const [newAchievements, setNewAchievements] = useState([]);
   const [showAchievement, setShowAchievement] = useState(null);
+  const [zoomedImage, setZoomedImage] = useState(null); // Для увеличенного изображения
 
   const section = sections.find(s => s.id === sectionId);
   const progress = loadProgress();
+
+  // Обработка клавиши ESC для закрытия модалки
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && zoomedImage) {
+        setZoomedImage(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [zoomedImage]);
 
   if (!section) {
     return (
@@ -402,13 +415,20 @@ export default function SectionDetail() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.1 * index }}
-                        className="bg-white rounded-2xl p-4 shadow-lg border-2 border-indigo-100"
+                        className="bg-white rounded-2xl p-4 shadow-lg border-2 border-indigo-100 cursor-pointer hover:shadow-2xl transition-shadow relative group"
+                        onClick={() => setZoomedImage(img)}
                       >
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full rounded-lg mb-3"
-                        />
+                        <div className="relative">
+                          <img
+                            src={img.src}
+                            alt={img.alt}
+                            className="w-full rounded-lg mb-3"
+                          />
+                          {/* Иконка увеличения при наведении */}
+                          <div className="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <ZoomIn className="text-white" size={48} />
+                          </div>
+                        </div>
                         <p className="text-sm text-gray-600 text-center italic">
                           {img.caption}
                         </p>
@@ -538,5 +558,57 @@ export default function SectionDetail() {
     );
   }
 
-  return null;
+  // Модальное окно с увеличенным изображением
+  return (
+    <>
+      {/* Основной контент (если есть) */}
+      
+      {/* Модальное окно для увеличенного изображения */}
+      <AnimatePresence>
+        {zoomedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
+            onClick={() => setZoomedImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 25 }}
+              className="relative max-w-7xl max-h-[90vh] w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Кнопка закрытия */}
+              <button
+                onClick={() => setZoomedImage(null)}
+                className="absolute -top-12 right-0 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition"
+              >
+                <X size={32} />
+              </button>
+
+              {/* Увеличенное изображение */}
+              <div className="bg-white rounded-2xl p-4 shadow-2xl">
+                <img
+                  src={zoomedImage.src}
+                  alt={zoomedImage.alt}
+                  className="w-full h-auto rounded-lg"
+                />
+                <p className="text-center text-gray-700 mt-4 text-lg font-medium">
+                  {zoomedImage.caption}
+                </p>
+              </div>
+
+              {/* Подсказка */}
+              <p className="text-white text-center mt-4 text-sm opacity-75">
+                Нажмите на затемнённую область или ESC, чтобы закрыть
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 }
